@@ -1,0 +1,31 @@
+.trk-main-wrapper {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
+
+.trk-screen {
+	display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.trk-main-body {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.trk-main-trackers {
+	overflow: scroll;
+}
+
+.trk-main-bottom-bar {
+    border-top: 1px solid white;
+    height: 60px;
+}

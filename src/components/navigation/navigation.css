@@ -1,0 +1,16 @@
+.wrapper {
+	display: flex;
+	flex-direction: row-reverse;
+	margin: 5px 10px;
+	height: 25px;
+}
+.list {
+	display: flex;
+	flex-direction: row;
+}
+.listItem {
+	margin: 0px 10px;
+	list-style: none;
+	list-style-type: none;
+	text-decoration: none;
+}

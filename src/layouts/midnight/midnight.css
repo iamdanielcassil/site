@@ -1,0 +1,25 @@
+.wrapper {
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    margin: auto;
+}
+
+.top {
+    width: 100%;
+    height: 600px;
+}
+
+.topHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: black;
+    height: 35px;
+}
+
+.topHeaderSection {
+    flex: 1 1 auto;
+    background-color: white;
+}
