@@ -1,6 +1,7 @@
 import React from 'react';
 import foundations from 'foundations/*.js';
 import actions from 'actions/*.js';
+import Loading from 'pages/loading/loading';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import { Switch } from 'react-router';
 
@@ -19,7 +20,7 @@ class Main extends React.Component {
 		);
 	}
 	renderLoading() {
-		return (<Route key="loading" path="/" render={() => <h1>LOADING</h1>} />)
+		return (<Route key="loading" path="/" component={Loading} />)
 	}
 	render() {
 		let pages = this.props.pages;

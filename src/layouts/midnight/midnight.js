@@ -7,6 +7,13 @@ import Body from 'layouts/midnight/midnightBody.js';
 import Footer from 'layouts/midnight/midnightFooter.js';
 
 class Test extends React.Component {
+	constructor() {
+		super();
+
+		this.top = Top;
+		this.body = Body;
+		this.footer = Footer;
+	}
 	render() {
 		return (
 			<div className={styles.wrapper}>

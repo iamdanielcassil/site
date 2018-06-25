@@ -1,20 +1,21 @@
 import React from 'react';
 import foundations from 'foundations/*.js';
 import actions from 'actions/*.js';
-import 'pages/test/test.css';
+import 'pages/loading/loading.css';
 
-class Test extends React.Component {
+class Main extends React.Component {
 	render() {
-		let Layout = actions.layouts.getLayoutByName(this.props.layoutKey);
+		let Layout = actions.layouts.getLayoutPieceByName(this.props.layoutKey, 'top');
 		return (
 			<div className="MNG-main--wrapper">
 				<Layout />
+				loading
 			</div>
 		);
 	}
 }
 
-export default foundations.store.subscribe(Test, {
+export default foundations.store.subscribe(Main, {
 	layoutKey: 'layouts.selected',
 });
 

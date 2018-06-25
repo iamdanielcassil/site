@@ -21,6 +21,13 @@ function getLayoutByName(name) {
 	return layouts[name] || 'div';
 }
 
+function getLayoutPieceByName(name, piece) {
+	// happy path only
+	let tempalte = layouts[name] || 'div';
+
+	return tempalte[piece];
+}
+
 function getCurrentOptions() {
 	return store.get('layouts.selectedOptions');
 }
@@ -32,6 +39,7 @@ function setSelected(name, options) {
 
 module.exports = {
 	getLayoutByName,
+	getLayoutPieceByName,
 	getCurrentOptions,
 	setSelected,
 };
