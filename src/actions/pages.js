@@ -1,27 +1,45 @@
+import foundations from 'foundations/*.js';
 import main from 'pages/main/main';
 import test from 'pages/test/test';
-import foundations from 'foundations/*.js';
-
-// let actions;
-
-// /**
-//  * Called by actions.js to avoid circular dependencies.
-//  */
-// function init(actionsRef) {
-// 	actions = actionsRef;
-// }
 
 const store = foundations.store;
+
+// temp pages
 const pages = [
-	{path: '/', component: main},
-	{path: '/main', component: main},
-	{path: '/test', component: test},
-	{path: '/404', component: main},
+	{path: '/'},
+	{path: '/main'},
+	{path: '/test'},
+	{path: '/404'},
 ];
 
-function getAll() {
-	return pages;
+function getAppPages() {
+	return store.get('pages.app');
 }
+
+function fetchAppPages() {
+	let pagesPromise = new Promise((resolve, reject) => {
+		window.setTimeout(() => {
+			resolve(pages)
+		}, 2000)
+	});
+
+	store.asyncSet('pages.app', pagesPromise)
+}
+
+function getPageComponentByPath(path) {
+	switch (path) {
+		case '/':
+			return main
+			break;
+		case '/main':
+			return main
+			break;
+		default:
+			return test
+			break;
+	}
+}
+
 function getScreenByName(name) {
 	return pages[name] || 'div';
 }
@@ -31,12 +49,20 @@ function getCurrentOptions() {
 }
 
 function setSelected(name, options) {
+	let mockPromise = new Promise((resolve, reject) => {
+		window.setTimeout(() => {
+			resolve(name);
+		}, 2000)
+	});
+
 	store.set('pages.selectedOptions', options);
-	store.set('pages.selectedPath', name);
+	store.asyncSet('pages.selectedPath', mockPromise);
 }
 
 module.exports = {
-	getAll,
+	fetchAppPages,
+	getAppPages,
+	getPageComponentByPath,
 	getScreenByName,
 	getCurrentOptions,
 	setSelected,

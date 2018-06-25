@@ -14,5 +14,6 @@ class Test extends React.Component {
 }
 
 export default foundations.store.subscribe(Test, {
+	layoutKey: 'layouts.selected',
 });
 

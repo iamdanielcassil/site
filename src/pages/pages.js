@@ -5,24 +5,36 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import { Switch } from 'react-router';
 
 class Main extends React.Component {
-	render() {
-		// let Screeen = actions.screens.getScreenByName(this.props.screen);
-		let pages = actions.pages.getAll();
+	componentDidMount() {
+		actions.pages.fetchAppPages();
+	}
+	renderPage(pages) {
 		return (
-			<div className="main-wrapper">
-				{/* <Screeen layoutKey={this.props.layoutKey} /> */}
-				<Switch>
-					{pages.map(page => { 
-						return <Route key={page.path} exact path={page.path} component={page.component} /> 
+			<Switch>
+				{pages.map(page => { 
+						return <Route key={page.path} exact path={page.path} component={actions.pages.getPageComponentByPath(page.path)} /> 
 					})}
 					<Route path="/" component={pages['404'] } /> 
 				</Switch>
+		);
+	}
+	renderLoading() {
+		return (<Route key="loading" path="/" render={() => <h1>LOADING</h1>} />)
+	}
+	render() {
+		let pages = this.props.pages;
+		let componenetToRender = pages.isLoading ? this.renderLoading() : this.renderPage(pages.data);
+
+		return (
+			<div className="main-wrapper">
+			 {componenetToRender}
 			</div>
 		);
 	}
 }
 
 export default foundations.store.subscribe(Main, {
+	pages: 'pages.app',
 	screen: 'pages.selectedPath',
 	layoutKey: 'layouts.selected',
 });
