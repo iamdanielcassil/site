@@ -1,20 +1,18 @@
 import React from 'react';
 import foundations from 'foundations/';
 import actions from 'actions/';
-import 'pages/test/test.css';
+import styles from 'components/smt/content-area/content-area.css';
 
 class Test extends React.Component {
 	render() {
-		let Layout = actions.layouts.getLayoutByName(this.props.layoutKey);
 		return (
-			<div className="MNG-main--wrapper">
-				<Layout />
+			<div data-cms-area={this.props.area}>
+				{actions.app.contents.getAreaContent(this.props.area).map(content => <Content content={content} />)}
 			</div>
 		);
 	}
 }
 
 export default foundations.store.subscribe(Test, {
-	layoutKey: 'layouts.selected',
 });
 

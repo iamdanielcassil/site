@@ -1,6 +1,6 @@
 import React from 'react';
-import foundations from 'foundations/*.js';
-import actions from 'actions/*.js';
+import foundations from 'foundations/';
+import actions from 'actions/';
 import 'layouts/mngold/mngold.css';
 
 class Main extends React.Component {

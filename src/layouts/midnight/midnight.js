@@ -1,30 +1,36 @@
 import React from 'react';
-import foundations from 'foundations/*.js';
-import actions from 'actions/*.js';
+import foundations from 'foundations/';
+import actions from 'actions/';
 import styles from 'layouts/midnight/midnight.css';
 import Top from 'layouts/midnight/midnightTop.js';
 import Body from 'layouts/midnight/midnightBody.js';
 import Footer from 'layouts/midnight/midnightFooter.js';
 
-class Test extends React.Component {
-	constructor() {
-		super();
+const render = () => {
+	return (
+		<div className={styles.wrapper}>
+			<Top />
+			<Body />
+			<Footer />
+		</div>
+	);
+};
 
-		this.top = Top;
-		this.body = Body;
-		this.footer = Footer;
-	}
-	render() {
-		return (
-			<div className={styles.wrapper}>
-				<Top />
-				<Body />
-				<Footer />
-			</div>
-		);
-	}
+const renderTop = () => {
+	return <Top />;
+};
+
+const renderBody = () => {
+	return <Body />;
+};
+
+const renderFooter = () => {
+	return <Footer />;
+};
+
+module.exports = {
+	render,
+	renderTop,
+	renderBody,
+	renderFooter,
 }
-
-export default foundations.store.subscribe(Test, {
-});
-

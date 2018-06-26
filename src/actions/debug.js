@@ -1,4 +1,4 @@
-import foundations from 'foundations/*.js';
+import foundations from 'foundations/';
 
 const store = foundations.store;
 

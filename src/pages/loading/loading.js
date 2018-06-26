@@ -1,21 +1,39 @@
 import React from 'react';
-import foundations from 'foundations/*.js';
-import actions from 'actions/*.js';
-import 'pages/loading/loading.css';
+import foundations from 'foundations/';
+import actions from 'actions/';
+import styles from 'pages/loading/loading.scss';
 
 class Main extends React.Component {
-	render() {
-		let Layout = actions.layouts.getLayoutPieceByName(this.props.layoutKey, 'top');
+	constructor() {
+		super();
+	}
+	renderLoading() {
+		let Layout = actions.layouts.getLayoutTopByName(this.props.layoutKey);
 		return (
-			<div className="MNG-main--wrapper">
-				<Layout />
-				loading
+			<div className={styles.overlay}>
+				<div className={`${styles.spinner} ${styles.center}`}>
+					<div className={styles.blade}></div>
+					<div className={styles.blade}></div>
+					<div className={styles.blade}></div>
+					<div className={styles.blade}></div>
+					<div className={styles.blade}></div>
+					<div className={styles.blade}></div>
+					<div className={styles.blade}></div>
+					<div className={styles.blade}></div>
+					<div className={styles.blade}></div>
+					<div className={styles.blade}></div>
+					<div className={styles.blade}></div>
+					<div className={styles.blade}></div>
+				</div>
 			</div>
 		);
+	}
+
+	render() {
+		return this.renderLoading();
 	}
 }
 
 export default foundations.store.subscribe(Main, {
-	layoutKey: 'layouts.selected',
 });
 

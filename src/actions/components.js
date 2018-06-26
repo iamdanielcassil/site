@@ -1,7 +1,7 @@
 'use strict';
 
 import main from 'screens/main/main';
-import foundations from 'foundations/*.js';
+import foundations from 'foundations/';
 
 // let actions;
 

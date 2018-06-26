@@ -40,17 +40,22 @@ const keys = {
 			{name: 'Test', path: '/test'},
 			{name: 'Home', path: '/'},
 		],
+		contents: {
+			data: [],
+		}
 	},
 	layouts: {
+		app: _defaultAsyncData([]),
 		selected: 'midnight',
 		selectedOptions: {},
 	},
 	pages: {
 		app: _defaultAsyncData([]),
-		smtPages: _defaultAsyncData([]),
-		smtCategories: _defaultAsyncData([]),
+		smt: _defaultAsyncData([]),
+		smtcategories: _defaultAsyncData([]),
 		selectedPath: '/',
 		selectedOptions: {},
+
 	}
 };
 

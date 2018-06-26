@@ -1,4 +1,4 @@
-import foundations from 'foundations/*.js';
+import foundations from 'foundations/';
 import main from 'pages/main/main';
 import test from 'pages/test/test';
 
@@ -6,21 +6,41 @@ const store = foundations.store;
 
 // temp pages
 const pages = [
-	{path: '/'},
-	{path: '/main'},
-	{path: '/test'},
-	{path: '/404'},
+	{path: '/', pageType: 'default'},
+	{path: '/main', pageType: 'default'},
+	{path: '/test', pageType: 'default'},
+	{path: '/404', pageType: 'default'},
 ];
 
 function getAppPages() {
 	return store.get('pages.app');
 }
 
-function fetchAppPages() {
+function setSMTPages(pages) {
+	let pagesPromise = Promise.resolve(pages);
+
+	store.asyncSet('pages.smt', pagesPromise)
+}
+
+function getSMTPages(pages) {
+	store.set('pages.smt');
+}
+
+function setSMTCategories(pages) {
+	let pagesPromise = Promise.resolve(pages);
+	
+	store.asyncSet('pages.smtcategories', pagesPromise)
+}
+
+function getSMTCategories(pages) {
+	store.set('pages.smtcategories');
+}
+
+function fetchAppPages(delay = 200) {
 	let pagesPromise = new Promise((resolve, reject) => {
 		window.setTimeout(() => {
 			resolve(pages)
-		}, 2000)
+		}, delay)
 	});
 
 	store.asyncSet('pages.app', pagesPromise)
@@ -59,6 +79,15 @@ function setSelected(name, options) {
 	store.asyncSet('pages.selectedPath', mockPromise);
 }
 
+function getSelectetd() {
+	let selectedPath = store.get('pages.selectedPath');
+
+	return pages.find(page => {
+		page.path === selectedPath;
+	});
+}
+
+
 module.exports = {
 	fetchAppPages,
 	getAppPages,
@@ -66,6 +95,8 @@ module.exports = {
 	getScreenByName,
 	getCurrentOptions,
 	setSelected,
+	setSMTPages,
+	setSMTCategories
 };
 
 

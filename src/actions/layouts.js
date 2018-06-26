@@ -1,6 +1,6 @@
 import mngold from 'layouts/mngold/mngold';
 import midnight from 'layouts/midnight/midnight';
-import foundations from 'foundations/*.js';
+import foundations from 'foundations/';
 
 // let actions;
 
@@ -17,15 +17,54 @@ const layouts = {
 	midnight,
 };
 
-function getLayoutByName(name) {
-	return layouts[name] || 'div';
+function fetchLayouts(delay = 200) {
+	let layoutPromise = new Promise((resolve, reject) => {
+		window.setTimeout(() => {
+			resolve(layouts)
+		}, delay)
+	});
+
+	store.asyncSet('layouts.app', layoutPromise)
 }
 
-function getLayoutPieceByName(name, piece) {
-	// happy path only
+function getLayoutByName(name) {
 	let tempalte = layouts[name] || 'div';
 
-	return tempalte[piece];
+	if (typeof tempalte.render !== 'function') {
+		return tempalte;
+	}
+
+	return tempalte.render;
+}
+
+function getLayoutTopByName(name) {
+	let tempalte = layouts[name] || 'div';
+
+	if (typeof tempalte.renderTop !== 'function') {
+		return tempalte;
+	}
+
+	return tempalte.renderTop;
+}
+
+function getLayoutBodyByName(name) {
+	let tempalte = layouts[name] || 'div';
+
+	if (typeof tempalte.renderBody !== 'function') {
+		return tempalte;
+	}
+
+	return tempalte.renderBody;
+}
+
+function getLayoutFooterByName(name) {
+	let tempalte = layouts[name] || 'div';
+
+	if (typeof tempalte.renderFooter !== 'function') {
+		return tempalte;
+	}
+
+	return tempalte.renderFooter;
 }
 
 function getCurrentOptions() {
@@ -38,8 +77,11 @@ function setSelected(name, options) {
 }
 
 module.exports = {
+	fetchLayouts,
 	getLayoutByName,
-	getLayoutPieceByName,
+	getLayoutTopByName,
+	getLayoutBodyByName,
+	getLayoutFooterByName,
 	getCurrentOptions,
 	setSelected,
 };

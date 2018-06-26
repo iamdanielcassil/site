@@ -3,6 +3,7 @@ import * as debug from 'actions/debug';
 import * as layouts from 'actions/layouts';
 import * as pages from 'actions/pages';
 import * as app from 'actions/app';
+import * as smtConnect from 'actions/smt-connect';
 
 const actions = { 
 	app,
@@ -10,6 +11,7 @@ const actions = {
 	pages,
 	animate,
 	layouts,
+	smtConnect,
 };
 
 for (let key in actions) {
